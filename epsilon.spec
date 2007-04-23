@@ -1,8 +1,6 @@
 %define	name	epsilon
-%define	version 0.3.0.006
-%define release 0.%{cvsrel}.1mdk
-
-%define cvsrel 20060323
+%define	version 0.3.0.007
+%define release %mkrel 1
 
 %define major 	0
 %define libname %mklibname %{name} %major
@@ -15,7 +13,7 @@ Release: 	%{release}
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
 URL: 		http://get-e.org/
-Source: 	%{name}-%{cvsrel}.tar.bz2
+Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	imlib2-devel
 BuildRequires:	epeg-devel png-devel
@@ -23,6 +21,8 @@ BuildRequires:	multiarch-utils
 BuildRequires:  evas-devel
 BuildRequires:  ecore-devel
 BuildRequires:  edje-devel
+BuildRequires:	autoconf2.5
+
 %description
 This is a small, display independent, and quick thumbnailing library.
 The lib itself conforms to the standard put forth by freedesktop.org.
@@ -47,10 +47,9 @@ Provides: %name-devel = %{version}-%{release}
 %{name} development headers and libraries
 
 %prep
-%setup -q -n %name
+%setup -q 
 
 %build
-./autogen.sh
 %configure2_5x
 %make
 
@@ -69,6 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
 %{_bindir}/%name
+%{_bindir}/%{name}_*
 
 %files -n %libname
 %defattr(-,root,root)
