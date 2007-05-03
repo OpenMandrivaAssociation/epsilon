@@ -14,6 +14,7 @@ License: 	BSD
 Group: 		Graphical desktop/Enlightenment
 URL: 		http://get-e.org/
 Source: 	%{name}-%{version}.tar.bz2
+Patch0:		epsilon-0.3.0.007-ipc_server_send.patch
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	imlib2-devel
 BuildRequires:	epeg-devel png-devel
@@ -48,6 +49,7 @@ Provides: %name-devel = %{version}-%{release}
 
 %prep
 %setup -q 
+%patch0 -p0
 
 %build
 %configure2_5x
