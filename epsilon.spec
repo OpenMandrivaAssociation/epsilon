@@ -1,6 +1,6 @@
 %define	name	epsilon
 %define	version 0.3.0.008
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define major 	0
 %define libname %mklibname %{name} %major
