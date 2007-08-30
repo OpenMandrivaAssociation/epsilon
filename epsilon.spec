@@ -22,7 +22,7 @@ BuildRequires:	multiarch-utils
 BuildRequires:  evas-devel >= 0.9.9.038
 BuildRequires:  ecore-devel
 BuildRequires:  edje-devel
-Buildrequires:  %{mklibname xine1}-devel
+Buildrequires:  %{mklibname xine}-devel
 BuildRequires:	autoconf2.5
 
 %description
@@ -59,6 +59,7 @@ Provides: %name-devel = %{version}-%{release}
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall
+cp -v $RPM_BUILD_DIR/%name-%version/%name-config %buildroot/%_bindir/
 %multiarch_binaries %buildroot/%_bindir/%name-config
 
 %post -n %libname -p /sbin/ldconfig
