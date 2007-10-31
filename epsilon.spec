@@ -1,6 +1,6 @@
 %define	name	epsilon
-%define	version 0.3.0.008
-%define release %mkrel 6
+%define	version 0.3.0.011
+%define release %mkrel 1
 
 %define major 	0
 %define libname %mklibname %{name} %major
@@ -17,11 +17,11 @@ Source: 	%{name}-%{version}.tar.bz2
 #Patch0:		epsilon-0.3.0.007-ipc_server_send.patch
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	imlib2-devel
-BuildRequires:	epeg-devel png-devel
+BuildRequires:	epeg-devel >= 0.9.0.011, png-devel
 BuildRequires:	multiarch-utils
-BuildRequires:  evas-devel >= 0.9.9.038
-BuildRequires:  ecore-devel
-BuildRequires:  edje-devel
+BuildRequires:  evas-devel >= 0.9.9.041
+BuildRequires:  ecore-devel >= 0.9.9.041
+BuildRequires:  edje-devel >= 0.5.0.041
 Buildrequires:  %{mklibname xine}-devel
 BuildRequires:	autoconf2.5
 
