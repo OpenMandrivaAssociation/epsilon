@@ -15,6 +15,7 @@ Group: 		Graphical desktop/Enlightenment
 URL: 		http://get-e.org/
 Source: 	%{name}-%{version}.tar.bz2
 #Patch0:		epsilon-0.3.0.007-ipc_server_send.patch
+BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	imlib2-devel
 BuildRequires:	epeg-devel >= 0.9.0.011, png-devel
 BuildRequires:	multiarch-utils
