@@ -1,10 +1,10 @@
 %define	name	epsilon
-%define	version 0.3.0.011
+%define	version 0.3.0.012
 %define release %mkrel 1
 
 %define major 	0
 %define libname %mklibname %{name} %major
-%define libnamedev %mklibname %{name} %major -d
+%define libnamedev %mklibname %{name} -d
 
 Summary: 	Enlightenment thumbnailing library
 Name: 		%{name}
@@ -12,18 +12,16 @@ Version: 	%{version}
 Release: 	%{release}
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
-URL: 		http://get-e.org/
+URL: 		http://www.enlightenment.org/
 Source: 	%{name}-%{version}.tar.bz2
-#Patch0:		epsilon-0.3.0.007-ipc_server_send.patch
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	imlib2-devel
-BuildRequires:	epeg-devel >= 0.9.0.011, png-devel
-BuildRequires:	multiarch-utils
-BuildRequires:  evas-devel >= 0.9.9.041
-BuildRequires:  ecore-devel >= 0.9.9.041
-BuildRequires:  edje-devel >= 0.5.0.041
-Buildrequires:  %{mklibname xine}-devel
-BuildRequires:	autoconf2.5
+BuildRequires:	epeg-devel
+BuildRequires:	png-devel
+BuildRequires:  evas-devel
+BuildRequires:  ecore-devel
+BuildRequires:  edje-devel
+Buildrequires:  libxine-devel
 
 %description
 This is a small, display independent, and quick thumbnailing library.
@@ -34,6 +32,7 @@ This package is part of the Enlightenment DR17 desktop shell.
 %package -n %libname
 Summary: Libraries for the %{name} package
 Group: System/Libraries
+Requires: %name
 
 %description -n %libname
 Libraries for %{name}
@@ -46,11 +45,10 @@ Provides: lib%{name}-devel = %{version}-%{release}
 Provides: %name-devel = %{version}-%{release}
 
 %description -n %libnamedev
-%{name} development headers and libraries
+%{name} development headers and libraries.
 
 %prep
 %setup -q 
-#%patch0 -p0
 
 %build
 %configure2_5x
@@ -59,8 +57,6 @@ Provides: %name-devel = %{version}-%{release}
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall
-cp -v $RPM_BUILD_DIR/%name-%version/%name-config %buildroot/%_bindir/
-%multiarch_binaries %buildroot/%_bindir/%name-config
 
 %post -n %libname -p /sbin/ldconfig
 %postun -n %libname -p /sbin/ldconfig
@@ -73,12 +69,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING README
 %{_bindir}/%name
 %{_bindir}/%{name}_*
+%{_libdir}/%name/plugins/xine_thumbnailer.so
 
 %files -n %libname
 %defattr(-,root,root)
 %{_libdir}/*.so.*
-%{_libdir}/%name/plugins/xine_thumbnailer.so
-
 
 %files -n %libnamedev
 %defattr(-,root,root)
@@ -88,7 +83,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.la
 %{_libdir}/%name/plugins/xine_thumbnailer.*a
 %{_includedir}/*.h
-%{_bindir}/%name-config
-%multiarch %multiarch_bindir/%name-config
-
-
