@@ -1,6 +1,6 @@
 %define	name	epsilon
 %define	version 0.3.0.012
-%define release %mkrel 5
+%define release %mkrel 6
 
 %define major 	0
 %define libname %mklibname %{name} %major
@@ -16,7 +16,6 @@ URL: 		http://www.enlightenment.org/
 Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	imlib2-devel
-#BuildRequires:	epeg-devel >= 0.9.1.042
 BuildRequires:	png-devel
 BuildRequires:  evas-devel >= 0.9.9.050
 BuildRequires:  ecore-devel >= 0.9.9.050
